@@ -21,7 +21,7 @@
 🚚 rename : 파일, 경로, route를 옮기거나 이름 변경<br>
 ♻️ refactor : 코드 리팩토링<br>
 
-## ⚒️ 요구사항 정의 및 설계
+## ⚒️ API 명세서 & ERD
 ### 📄 API 명세서
 <details>
 <summary>API 명세서</summary>
