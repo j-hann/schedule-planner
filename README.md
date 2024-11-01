@@ -32,9 +32,9 @@
 |:--------:|:------:|:---:|
 |  일정 생성   | POST  |/schedules|
 | 일정 목록 조회 | GET  |/schedules|
-| 일정 상세 조회 | GET  |/schedules/{schedule_Id}|
-|  일정 수정   | PUT  |/schedules/{schedule_Id}|
-|  일정 삭제   | DELETE  |/schedules/{schedule_Id}|
+| 일정 상세 조회 | GET  |/schedules/{Id}|
+|  일정 수정   | PUT  |/schedules/{Id}|
+|  일정 삭제   | DELETE  |/schedules/{Id}|
 
 <details>
 <summary>✅ 일정 생성</summary>
@@ -46,30 +46,31 @@
 #### Request Eelements
 |        파라미터        |   타입    | 필수 여부 |           설명           |
 |:------------------:|:-------:|:-----:|:----------------------:|
-|      user_id       | String  |   Y   |         사용자 ID         |
-|     user_name      | String  |   Y   |         사용자 이름         |
-| schedule_password  | String  |   Y   |        일정 비밀번호         |
-|   schedule_title   | String  |   Y   |         일정 제목          |
-| schedule_contents  | String  |   Y   |         일정 내용          |
-| schedule_insert_dt | String |   Y   |   일정 작성 일자(datetime)   |
-| schedule_update_dt |  String   |   Y   | 일정 최종 수정 일자 (datetime) |
+| id | Integer |   Y   |         일정 ID          |
+|user_id | String  |   Y   |         사용자 ID         |
+|     name      | String  |   Y   |         사용자 이름         |
+| password | String  |   Y   |        일정 비밀번호         |
+| title | String  |   Y   |         일정 제목          |
+| contents | String  |   Y   |         일정 내용          |
+| created_at | String |   Y   |   일정 작성 일자(datetime)   |
+| updated_at |  String   |   Y   | 일정 최종 수정 일자 (datetime) |
 
 #### Respons Eelements
 | 파라미터  |   타입    | 필수 여부 |     설명 |
 |:-----:|:-------:|:-----:|:------:|
-| schedule_id | Integer |   Y   |  일정 ID |
+| id | Integer |   Y   |         일정 ID          |
 
 #### 요청 예시
 
 ```json
   {
     "user_id" : "550e8400-e29b-41d4-a716-441155770000",
-    "user_name" : "작성자1",
-    "schedule_password" : "12345",
-    "schedule_title" : "오늘의 일정",
-    "schedule_contents" : "과제 제출하기",
-    "schedule_insert_dt" : "2024-10-30",
-    "schedule_update_dt" : "2024-10-31"
+    "name" : "작성자1",
+    "password" : "12345",
+    "title" : "오늘의 일정",
+    "contents" : "과제 제출하기",
+    "created_at" : "2024-10-30",
+    "updated_at" : "2024-10-31"
   }
 ```
 #### 응답 예시
@@ -77,7 +78,7 @@
 ```json
   {
     "message" : "일정 생성에 성공했습니다.",
-    "schedule_id" :"1"
+    "id" :"1"
   }
 ```
 - Statue Code 400 Bad Request [잘못된 요청]
@@ -107,14 +108,14 @@
 #### Respons Eelements
 | 파라미터  |   타입    | 필수 여부 |           설명           |
 |:-----:|:-------:|:-----:|:----------------------:|
-| schedule_id | Integer |   Y   |         일정 ID          |
+| id | Integer |   Y   |         일정 ID          |
 |user_id | String  |   Y   |         사용자 ID         |
-|     user_name      | String  |   Y   |         사용자 이름         |
-| schedule_password | String  |   Y   |        일정 비밀번호         |
-| schedule_title | String  |   Y   |         일정 제목          |
-| schedule_contents | String  |   Y   |         일정 내용          |
-| schedule_insert_dt | String |   Y   |   일정 작성 일자(datetime)   |
-| schedule_update_dt |  String   |   Y   | 일정 최종 수정 일자 (datetime) |
+|     name      | String  |   Y   |         사용자 이름         |
+| password | String  |   Y   |        일정 비밀번호         |
+| title | String  |   Y   |         일정 제목          |
+| contents | String  |   Y   |         일정 내용          |
+| created_at | String |   Y   |   일정 작성 일자(datetime)   |
+| updated_at |  String   |   Y   | 일정 최종 수정 일자 (datetime) |
 
 #### 응답 예시
 - Statue Code 200 OK [응답 성공]
@@ -124,24 +125,24 @@
   "list_size": 10,
   "data": [
     {
-      "schedule_id" :"1",
+      "id" :"1",
       "user_id" : "550e8400-e29b-41d4-a716-441155770000",
-      "user_name" : "작성자1",
-      "schedule_password" : "12345",
-      "schedule_title" : "오늘의 일정",
-      "schedule_contents" : "과제 제출하기",
-      "schedule_insert_dt" : "2024-10-30",
-      "schedule_update_dt" : "2024-10-31"
+      "name" : "작성자1",
+      "password" : "12345",
+      "title" : "오늘의 일정",
+      "contents" : "과제 제출하기",
+      "created_at" : "2024-10-30",
+      "updated_at" : "2024-10-31"
     },
     {
-      "schedule_id" :"2",
+      "id" :"2",
       "user_id" : "450e8400-a29b-41d4-a726-441166330000",
-      "user_name" : "작성자2",
-      "schedule_password" : "5456a",
-      "schedule_title" : "운동 하기",
-      "schedule_contents" : "웨이트 1시간, 유산소 30분",
-      "schedule_insert_dt" : "2024-10-31",
-      "schedule_update_dt" : "2024-11-01"
+      "name" : "작성자2",
+      "password" : "5456a",
+      "title" : "운동 하기",
+      "contents" : "웨이트 1시간, 유산소 30분",
+      "created_at" : "2024-10-31",
+      "updated_at" : "2024-11-01"
     }
   ]
 }
@@ -165,7 +166,7 @@
 
 |  기능  | method |URL|
 |:----:|:------:|:---:|
-| 일정 상세 조회 | GET  |/schedules/{schedule_Id}|
+| 일정 상세 조회 | GET  |/schedules/{id}|
 
 #### Request Eelements
 - x
@@ -173,27 +174,27 @@
 #### Respons Eelements
 | 파라미터  |   타입    | 필수 여부 |           설명           |
 |:-----:|:-------:|:-----:|:----------------------:|
-| schedule_id | Integer |   Y   |         일정 ID          |
+| id | Integer |   Y   |         일정 ID          |
 |user_id | String  |   Y   |         사용자 ID         |
-|     user_name      | String  |   Y   |         사용자 이름         |
-| schedule_password | String  |   Y   |        일정 비밀번호         |
-| schedule_title | String  |   Y   |         일정 제목          |
-| schedule_contents | String  |   Y   |         일정 내용          |
-| schedule_insert_dt | String |   Y   |   일정 작성 일자(datetime)   |
-| schedule_update_dt |  String   |   Y   | 일정 최종 수정 일자 (datetime) |
+|     name      | String  |   Y   |         사용자 이름         |
+| password | String  |   Y   |        일정 비밀번호         |
+| title | String  |   Y   |         일정 제목          |
+| contents | String  |   Y   |         일정 내용          |
+| created_at | String |   Y   |   일정 작성 일자(datetime)   |
+| updated_at |  String   |   Y   | 일정 최종 수정 일자 (datetime) |
 
 #### 응답 예시
 - Statue Code 200 OK [응답 성공]
 ```json
 {
-  "schedule_id" :"1",
+  "id" :"1",
   "user_id" : "550e8400-e29b-41d4-a716-441155770000",
-  "user_name" : "작성자1",
-  "schedule_password" : "12345",
-  "schedule_title" : "오늘의 일정",
-  "schedule_contents" : "과제 제출하기",
-  "schedule_insert_dt" : "2024-10-30",
-  "schedule_update_dt" : "2024-10-31"
+  "name" : "작성자1",
+  "password" : "12345",
+  "title" : "오늘의 일정",
+  "contents" : "과제 제출하기",
+  "created_at" : "2024-10-30",
+  "updated_at" : "2024-10-31"
 }
 ```
 - Statue Code 400 Bad Request [잘못된 요청]
@@ -215,35 +216,34 @@
 
 |  기능  | method |URL|
 |:----:|:------:|:---:|
-|  일정 수정   | PUT  |/schedules/{schedule_Id}|
+|  일정 수정   | PUT  |/schedules/{id}|
 
 #### Request Eelements
 | 파라미터  |   타입    | 필수 여부 |           설명           |
 |:-----:|:-------:|:-----:|:----------------------:|
-| schedule_id | Integer |   Y   |         일정 ID          |
+| id | Integer |   Y   |         일정 ID          |
 |user_id | String  |   Y   |         사용자 ID         |
-|     user_name      | String  |   Y   |         사용자 이름         |
-| schedule_password | String  |   Y   |        일정 비밀번호         |
-| schedule_title | String  |   Y   |         일정 제목          |
-| schedule_contents | String  |   Y   |         일정 내용          |
-| schedule_update_dt |  String   |   Y   | 일정 최종 수정 일자 (datetime) |
+|     name      | String  |   Y   |         사용자 이름         |
+| password | String  |   Y   |        일정 비밀번호         |
+| title | String  |   Y   |         일정 제목          |
+| contents | String  |   Y   |         일정 내용          |
+| updated_at |  String   |   Y   | 일정 최종 수정 일자 (datetime) |
 
 #### Respons Eelements
-| 파라미터  |   타입    | 필수 여부 |           설명           |
-|:-----:|:-------:|:-----:|:----------------------:|
-| schedule_id | Integer |   Y   |         일정 ID          |
+
+- x
 
 #### 요청 예시
 
 ```json
   {
-    "schedule_id" :"1",
+    "id" :"1",
     "user_id" : "550e8400-e29b-41d4-a716-441155770000",
-    "user_name" : "수정한 작성자",
-    "schedule_password" : "55555",
-    "schedule_title" : "오늘의 일정 수정",
-    "schedule_contents" : "과제 제출하기 수정 완료",
-    "schedule_update_dt" : "2024-11-01"
+    "name" : "수정한 작성자",
+    "password" : "55555",
+    "title" : "오늘의 일정 수정",
+    "contents" : "과제 제출하기 수정 완료",
+    "updated_at" : "2024-11-01"
   }
 ```
 
@@ -251,8 +251,7 @@
 - Statue Code 200 OK [응답 성공]
 ```json
 {
-  "message": "일정 수정에 성공했습니다.",
-  "schedule_id" :"1"
+  "message": "일정 수정에 성공했습니다."
 }
 ```
 - Statue Code 400 Bad Request [잘못된 요청]
@@ -274,21 +273,20 @@
 
 |  기능  | method |URL|
 |:----:|:------:|:---:|
-|  일정 삭제   | DELETE  |/schedules/{schedule_Id}|
+|  일정 삭제   | DELETE  |/schedules/{id}|
 
 #### Request Eelements
 | 파라미터  |   타입    | 필수 여부 |           설명           |
 |:-----:|:-------:|:-----:|:----------------------:|
-| schedule_id | Integer |   Y   |         일정 ID          |
+| id | Integer |   Y   |         일정 ID          |
 |user_id | String  |   Y   |         사용자 ID         |
-| schedule_password | String  |   Y   |        일정 비밀번호         |
+| password | String  |   Y   |        일정 비밀번호         |
 
 
 
 #### Respons Eelements
-| 파라미터  |   타입    | 필수 여부 |           설명           |
-|:-----:|:-------:|:-----:|:----------------------:|
-| schedule_id | Integer |   Y   |         일정 ID          |
+
+- x
 
 #### 요청 예시
 
@@ -298,8 +296,7 @@
 - Statue Code 200 OK [응답 성공]
 ```json
 {
-  "message": "일정 삭제에 성공했습니다.",
-  "schedule_id" :"1"
+  "message": "일정 삭제에 성공했습니다."
 }
 ```
 - Statue Code 400 Bad Request [잘못된 요청]
@@ -321,9 +318,9 @@
 |     기능     | method |         URL          |
 |:----------:|:------:|:--------------------:|
 |   사용자 등록   | POST  |        /users        |
-| 사용자 정보 조회  | GET  |   /users/{user_Id}   |
-| 사용자 정보 수정  | PUT  | /users/{user_Id} |
-|   사용자 삭제   | DELETE  | /users/{user_Id} |
+| 사용자 정보 조회  | GET  |   /users/{Id}   |
+| 사용자 정보 수정  | PUT  | /users/{Id} |
+|   사용자 삭제   | DELETE  | /users/{Id} |
 
 <details>
 <summary>✅ 사용자 등록</summary>
@@ -333,35 +330,37 @@
 |   사용자 등록   | POST  |        /users        |
 
 #### Request Eelements
-|        파라미터        |   타입    | 필수 여부 |             설명              |
-|:------------------:|:-------:|:-----:|:---------------------------:|
-|     user_name      | String  |   Y   |           사용자 이름            |
-|     user_email      | String  |   Y   |           사용자 이메일           |
-|     user_join_dt      | String  |   Y   |           사용자 가입일           |
+|        파라미터        |   타입    | 필수 여부 |           설명            |
+|:------------------:|:-------:|:-----:|:-----------------------:|
+|     name      | String  |   Y   |         사용자 이름          |
+|     email      | String  |   Y   |         사용자 이메일         |
+|     created_at      | String  |   Y   |         사용자 가입일(datetime)         |
+|     updated_at      | String  |   Y   | 사용자 정보 최종 수정일(datetime) |
 
 
 #### Respons Eelements
 | 파라미터  |   타입    | 필수 여부 |     설명 |
 |:-----:|:-------:|:-----:|:------:|
-|      user_id       | String  |   Y   |           사용자 ID            |
-|     user_status      | String  |   Y   | 사용자 상태 (정상 : '1', 탈퇴 : '2') |
+|      id       | String  |   Y   |           사용자 ID            |
+|     status      | String  |   Y   | 사용자 상태 (정상 : '1', 탈퇴 : '2') |
 
 #### 요청 예시
 
 ```json
   {
-    "user_name" : "작성자 닉네임",
-    "user_email" : "abcd@gmail.com",
-    "user_join_dt" : "2024-10-31"
-  }
+  "name": "작성자 닉네임",
+  "email": "abcd@gmail.com",
+  "created_at": "2024-10-31",
+  "updated_at": "2024-10-31"
+}
 ```
 #### 응답 예시
 - Statue Code 201 Created [생성 성공]
 ```json
   {
     "message" : "회원 등록에 성공했습니다.",
-    "user_id" : "550e8400-e29b-41d4-a716-441155770000",
-    "user_status" : "1"
+    "id" : "550e8400-e29b-41d4-a716-441155770000",
+    "status" : "1"
   }
 ```
 - Statue Code 400 Bad Request [잘못된 요청]
@@ -377,22 +376,23 @@
 
 |  기능  | method |URL|
 |:----:|:------:|:---:|
-| 사용자 정보 조회  | GET  |   /users/{user_Id}   |
+| 사용자 정보 조회  | GET  |   /users/{id}   |
 
 #### Request Eelements
 |        파라미터        |   타입    | 필수 여부 |             설명              |
 |:------------------:|:-------:|:-----:|:---------------------------:|
-|      user_id       | String  |   Y   |           사용자 ID            |
+|      id       | String  |   Y   |           사용자 ID            |
 
 
 #### Respons Eelements
 | 파라미터  |   타입    | 필수 여부 |     설명 |
 |:-----:|:-------:|:-----:|:------:|
-|      user_id       | String  |   Y   |           사용자 ID            |
-|     user_name      | String  |   Y   |           사용자 이름            |
-|     user_email      | String  |   Y   |           사용자 이메일           |
-|     user_join_dt      | String  |   Y   |           사용자 가입일           |
-|     user_status      | String  |   Y   | 사용자 상태 (정상 : '1', 탈퇴 : '2') |
+|      id       | String  |   Y   |           사용자 ID            |
+|     name      | String  |   Y   |           사용자 이름            |
+|     email      | String  |   Y   |           사용자 이메일           |
+|     created_at      | String  |   Y   |           사용자 가입일(datetime)           |
+|     updated_at      | String  |   Y   | 사용자 정보 최종 수정일(datetime) |
+|     status      | String  |   Y   | 사용자 상태 (정상 : '1', 탈퇴 : '2') |
 
 #### 요청 예시
 
@@ -402,11 +402,12 @@
 - Statue Code 200 OK [응답 성공]
 ```json
   {
-  "user_id" : "550e8400-e29b-41d4-a716-441155770000",
-  "user_name" : "작성자 닉네임",
-  "user_email" : "abcd@gmail.com",
-  "user_join_dt" : "2024-10-31",
-  "user_status" : "1"
+  "id" : "550e8400-e29b-41d4-a716-441155770000",
+  "name" : "작성자 닉네임",
+  "email" : "abcd@gmail.com",
+  "created_at" : "2024-10-31",
+  "updated_at" : "2024-10-31",
+  "status" : "1"
 }
 ```
 - Statue Code 400 Bad Request [잘못된 요청]
@@ -428,35 +429,37 @@
 
 |  기능  | method |URL|
 |:----:|:------:|:---:|
-| 사용자 정보 수정  | PUT  | /users/{user_Id} |
+| 사용자 정보 수정  | PUT  | /users/{id} |
 
 #### Request Eelements
 |        파라미터        |   타입    | 필수 여부 |             설명              |
 |:------------------:|:-------:|:-----:|:---------------------------:|
-|     user_name      | String  |   Y   |           사용자 이름            |
-|     user_email      | String  |   Y   |           사용자 이메일           |
+|      id       | String  |   Y   |           사용자 ID            |
+|     name      | String  |   Y   |           사용자 이름            |
+|     email      | String  |   Y   |           사용자 이메일           |
 
 
 #### Respons Eelements
 | 파라미터  |   타입    | 필수 여부 |     설명 |
 |:-----:|:-------:|:-----:|:------:|
-|      user_id       | String  |   Y   |           사용자 ID            |
+|     updated_at      | String  |   Y   | 사용자 정보 최종 수정일(datetime) |
 
 #### 요청 예시
 
 ```json
   {
-    "user_name" : "작성자 닉네임 수정",
-    "user_email" : "xdwe@gmail.com"
-  }
+  "id": "550e8400-e29b-41d4-a716-441155770000",
+  "name": "작성자 닉네임 수정",
+  "email": "xdwe@gmail.com"
+}
 ```
 #### 응답 예시
 - Statue Code 200 OK [생성 성공]
 ```json
   {
-    "message" : "회원 정보를 수정했습니다.",
-    "user_id" : "550e8400-e29b-41d4-a716-441155770000"
-  }
+  "message": "회원 정보를 수정했습니다.",
+  "updated_at": "2024-11-01"
+}
 ```
 - Statue Code 400 Bad Request [잘못된 요청]
 ```json
@@ -477,25 +480,25 @@
 
 |  기능  | method |URL|
 |:----:|:------:|:---:|
-| 사용자 삭제  | DELETE  | /users/{user_Id} |
+| 사용자 삭제  | DELETE  | /users/{id} |
 
 #### Request Eelements
 |        파라미터        |   타입    | 필수 여부 |             설명              |
 |:------------------:|:-------:|:-----:|:---------------------------:|
-|      user_id       | String  |   Y   |           사용자 ID            |
+|      id       | String  |   Y   |           사용자 ID            |
 
 
 
 #### Respons Eelements
 | 파라미터  |   타입    | 필수 여부 |     설명 |
 |:-----:|:-------:|:-----:|:------:|
-|     user_status      | String  |   Y   | 사용자 상태 (정상 : '1', 탈퇴 : '2') |
+|     status      | String  |   Y   | 사용자 상태 (정상 : '1', 탈퇴 : '2') |
 
 #### 요청 예시
 
 ```json
   {
-    "user_id" : "550e8400-e29b-41d4-a716-441155770000"
+    "id" : "550e8400-e29b-41d4-a716-441155770000"
   }
 ```
 #### 응답 예시
@@ -503,7 +506,7 @@
 ```json
   {
     "message" : "회원 삭제를 성공했습니다.",
-    "user_status" : "2"
+    "status" : "2"
   }
 ```
 - Statue Code 400 Bad Request [잘못된 요청]
