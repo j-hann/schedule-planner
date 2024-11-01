@@ -527,7 +527,7 @@
 <details>
 <summary>ERD</summary>
 
-![SchedulePlanner - ERD](https://github.com/user-attachments/assets/7608371f-cfac-440c-aeb0-ab4249370caa)
+![SchedulePlanner - ERD 최종](https://github.com/user-attachments/assets/1e3697da-7520-484f-96f5-083c3a86801f)
 </details>
 
 ## 🪐 주요 기능
