@@ -58,7 +58,8 @@ VALUES (1,
 
 -- 일정 목록 조회 쿼리
 SELECT *
-FROM T_SCHEDULE;
+FROM T_SCHEDULE
+ORDER BY schedule_update_dt DESC ; --수정일 기준 내림차순 정렬
 
 -- 일정 상세 조회 쿼리
 SELECT *
